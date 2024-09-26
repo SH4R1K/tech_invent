@@ -1,5 +1,5 @@
 import wmi
-from memory_converter import correct_size
+from .memory_converter import correct_size
 def get_rams():
     c = wmi.WMI()
     rams = c.Win32_PhysicalMemory()
