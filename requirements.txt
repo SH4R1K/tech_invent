@@ -1,0 +1,4 @@
+GPUtil
+setuptools
+psutil
+wmi
