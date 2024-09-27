@@ -1,13 +1,20 @@
 import json
+from platform import uname
 from modules.cpu_module import get_processors
 from modules.mainboard import get_mainboard
 from modules.ram_module import get_rams
 from modules.net_module import get_network_adapters
 from modules.gpu_module import get_gpus
 from modules.perifery_module import get_connected_devices
+from api.api_module import send_data
 def creating_file():
-    collect_info_dict = {'info': {'system_info': {}}}
-    collect_info_dict['info']['system_info'] = {
+    collect_info_dict = {'workplace': {'hardware_info': {},'software_info':{}}}
+    collect_info_dict['workplace'] = {
+        'comp_name': uname().node,
+        'os_name': f"{uname().system} {uname().release}",
+        'version': uname().version
+    }
+    collect_info_dict['workplace']['hardware_info'] = {
         'mainboard': get_mainboard(),
         "processor": get_processors(),
         "ram": get_rams(),
@@ -21,6 +28,12 @@ def main():
     dict_info = creating_file()
     with open(f'info_emae.json', 'w', encoding='utf-8') as file:
         json.dump(dict_info, file, indent=4, ensure_ascii=False)
+        jsons = json.dumps(dict_info)
+        try:
+            print('Zaglushka')
+            send_data(jsons)
+        except:
+            print('api is dead ☠️')
     print("Success!")
 
 

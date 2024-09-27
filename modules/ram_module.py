@@ -3,10 +3,10 @@ from .memory_converter import correct_size
 def get_rams():
     c = wmi.WMI()
     rams = c.Win32_PhysicalMemory()
-    output = dict()
-    for i, ram in enumerate(rams):
+    output = list()
+    for ram in rams:
         #print(ram)
-        output[i] = {
+        output.append({
             "name": ram.Name.strip(),
             "manufacturer": ram.Manufacturer,
             "speed": ram.Speed,
@@ -14,6 +14,6 @@ def get_rams():
             "memory_type": ram.MemoryType,
             "part_number": ram.PartNumber.strip(),
             "serial_number": ram.SerialNumber
-        }
+        })
     return output
 #print(get_rams())

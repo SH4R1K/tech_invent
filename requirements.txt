@@ -2,3 +2,5 @@ GPUtil
 setuptools
 psutil
 wmi
+requests
+platform
