@@ -28,4 +28,4 @@ class LinuxTools:
         return get_connected_devices()
     
     def get_installed_software(self):
-        return get_memory_info()
+        return get_installed_packages()
