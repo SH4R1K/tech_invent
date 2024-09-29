@@ -1,27 +1,27 @@
-import json
+import json, sys
 from platform import uname
-from modules.cpu_module import get_processors
-from modules.mainboard import get_mainboard
-from modules.ram_module import get_rams
-from modules.net_module import get_network_adapters
-from modules.gpu_module import get_gpus
-from modules.perifery_module import get_connected_devices
+from modules import info_collector as ic
+sys.path.append('modules/windows_tools')
+sys.path.append('modules')
 from api.api_module import send_data
 def creating_file():
-    collect_info_dict = {'workplace': {'hardware_info': {},'software_info':{}}}
+    collect_info_dict = {'name':'','workplace': {'hardware_info': {},'software':{}}}
+    collect_info_dict['name'] = '0109'
     collect_info_dict['workplace'] = {
         'comp_name': uname().node,
         'os_name': f"{uname().system} {uname().release}",
         'version': uname().version
     }
+    info_collector = ic.InfoCollector(uname().system.lower())
     collect_info_dict['workplace']['hardware_info'] = {
-        'mainboard': get_mainboard(),
-        "processor": get_processors(),
-        "ram": get_rams(),
-        "net": get_network_adapters(),
-        "gpu": get_gpus(),
-        "perifery": get_connected_devices()
+        'mainboard': info_collector.tools.get_mainboard(),
+        "processor": info_collector.tools.get_processors(),
+        "ram": info_collector.tools.get_rams(),
+        "net": info_collector.tools.get_network_adapters(),
+        "gpu": info_collector.tools.get_gpus(),
+        "perifery": info_collector.tools.get_connected_devices()
     }
+    collect_info_dict['workplace']['software'] = info_collector.tools.get_installed_software()
     return collect_info_dict
 
 def main():

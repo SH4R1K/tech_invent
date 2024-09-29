@@ -8,8 +8,7 @@ def get_processors():
             "name": processor.Name.strip(),
             "physical_cores": processor.NumberOfCores,
             "logical_cores": processor.NumberOfLogicalProcessors,
-            "max_clock_speed": processor.MaxClockSpeed,
-            "cpu_id": processor.ProcessorId
+            "max_clock_speed": processor.MaxClockSpeed
         })
     return output
 #print(get_processors())

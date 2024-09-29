@@ -1,5 +1,5 @@
 import GPUtil
-from .memory_converter import correct_size
+from memory_converter import correct_size
 def get_gpus():
     gpus = GPUtil.getGPUs()
     output = list()
