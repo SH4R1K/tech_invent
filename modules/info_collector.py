@@ -5,5 +5,5 @@ class InfoCollector:
             from windows_tools.WindowsTools import WindowsTools as wt
             self.tools = wt()
         else: 
-            from windows_tools.WindowsTools import WindowsTools as wt
+            from linux_tools.LinuxTools import LinuxTools as wt
             self.tools = wt()

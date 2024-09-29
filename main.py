@@ -1,6 +1,7 @@
 import json, sys
 from platform import uname
 from modules import info_collector as ic
+sys.path.append('modules/linux_tools')
 sys.path.append('modules/windows_tools')
 sys.path.append('modules')
 from api.api_module import send_data

@@ -1,10 +1,10 @@
 from .cpu_module import get_processors
 from .mainboard import get_mainboard
-from .ram_module import get_rams
+from .ram_module import get_memory_info
 from .net_module import get_network_adapters
 from .gpu_module import get_gpus
 from .perifery_module import get_connected_devices
-from .software_module import get_installed_software
+from .software_module import get_installed_packages
 class LinuxTools:
     def __init__(self):
         print("Linux!!!")
@@ -16,7 +16,7 @@ class LinuxTools:
         return get_mainboard()
     
     def get_rams(self):
-        return get_rams()
+        return get_memory_info()
     
     def get_network_adapters(self):
         return get_network_adapters()
@@ -28,4 +28,4 @@ class LinuxTools:
         return get_connected_devices()
     
     def get_installed_software(self):
-        return get_installed_software()
+        return get_memory_info()
