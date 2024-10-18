@@ -13,11 +13,10 @@ def getBaseboardProductName():
 
 def get_mainboard():
     mainboard_info = getBaseboardProductName()
-    output = list()
     if (mainboard_info != None):
-        output.append({
+        output = {
                 "name": f"{mainboard_info['Manufacturer']} {mainboard_info['Product Name']}",
                 "serial_number": mainboard_info["Serial Number"]
-        })
+        }
     return output
 print(getBaseboardProductName())
