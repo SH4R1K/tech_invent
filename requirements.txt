@@ -1,6 +1,11 @@
-GPUtil
-setuptools
-psutil
-wmi
-requests
-platform
+certifi==2024.8.30
+charset-normalizer==3.4.0
+GPUtil==1.4.0
+idna==3.10
+psutil==6.0.0
+py-cpuinfo==9.0.0
+pywin32==308
+requests==2.32.3
+setuptools==75.2.0
+urllib3==2.2.3
+WMI==1.5.1
