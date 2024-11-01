@@ -20,7 +20,8 @@ def creating_file():
         "ram": info_collector.tools.get_rams(),
         "net": info_collector.tools.get_network_adapters(),
         "gpu": info_collector.tools.get_gpus(),
-        "perifery": info_collector.tools.get_connected_devices()
+        "perifery": info_collector.tools.get_connected_devices(),
+        "disk": info_collector.tools.get_disk_info()
     }
     collect_info_dict['workplace']['software'] = info_collector.tools.get_installed_software()
     return collect_info_dict

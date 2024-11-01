@@ -5,6 +5,7 @@ from .net_module import get_network_adapters
 from .gpu_module import get_gpus
 from .perifery_module import get_connected_devices
 from .software_module import get_installed_software
+from .disk_module_wmi import get_disks_info_wmi
 class WindowsTools:
     def __init__(self):
         print("Windows!!!")
@@ -23,6 +24,9 @@ class WindowsTools:
     
     def get_gpus(self):
         return get_gpus()
+    
+    def get_disk_info(self):
+        return get_disks_info_wmi()
     
     def get_connected_devices(self):
         return get_connected_devices()

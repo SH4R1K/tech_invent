@@ -6,7 +6,6 @@ def get_disks_info_wmi():
     for disk in c.Win32_DiskDrive():
         model = disk.Model
         size_gb = int(disk.Size) // (1024 ** 3)  
-        print(disk)
         disks_info.append({
             'model': model,
             'size': size_gb,
