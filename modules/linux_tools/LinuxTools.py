@@ -29,3 +29,6 @@ class LinuxTools:
     
     def get_installed_software(self):
         return get_installed_packages()
+    
+#    def get_disk_info(self):
+#       return get_disks_info_wmi() #
