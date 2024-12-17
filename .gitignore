@@ -4,4 +4,4 @@ modules/__pycache__
 gitignore
 build
 dist
-main.spec
+venv
