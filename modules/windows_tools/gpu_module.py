@@ -1,4 +1,5 @@
 import GPUtil
+from pyadl import *
 import wmi
 def get_gpus():
     gpus = GPUtil.getGPUs()
@@ -9,6 +10,13 @@ def get_gpus():
             "adapter_ram": gpu.memoryTotal/1024, # gb
             "uuid": gpu.uuid,
         })
+    amd_gpus = ADLManager.getInstance().getDevices()
+    for gpu in amd_gpus:
+        adapter_name = gpu.adapterName.decode('utf-8')
+        if (all(item['name'] != adapter_name for item in output)):
+            output.append({
+                "name": adapter_name,
+            })
     return output
 
 

@@ -6,7 +6,7 @@ def get_network_adapters():
     for nw_adapter in network_adapters:
         if (nw_adapter.PhysicalAdapter and nw_adapter.NetConnectionStatus == 2):
             if not any(keyword in nw_adapter.Name 
-                       for keyword in ["Virtual", "Oracle", "Hyper-V", "VPN", "Pseudo"]):
+                       for keyword in ["Virtual", "Oracle", "Hyper-V", "VPN", "Pseudo", "sing-tun", "Tunnel"]):
                 output.append({
                     "name": nw_adapter.Name,
                     "manufacturer": nw_adapter.Manufacturer,
