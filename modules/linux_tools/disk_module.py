@@ -3,7 +3,7 @@ import json
 import re
 
 def get_disks_info():
-    result = subprocess.run(['lsblk', '-o', 'MODEL,SIZE,TYPE'], capture_output=True, text=True)
+    result = subprocess.run(['lsblk', '-d', '-o', 'MODEL,SIZE,TYPE'], capture_output=True, text=True)
     
     disks_info = []
     
@@ -14,6 +14,8 @@ def get_disks_info():
             size = match.group(2)
             device_type = match.group(3)
 
+            size = size.replace(',', '.')
+            
             if device_type != 'disk':
                 continue
 
