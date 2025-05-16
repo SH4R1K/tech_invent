@@ -1,5 +1,6 @@
 import json, sys
 import argparse
+from datetime import date
 from platform import uname
 from modules import info_collector as ic
 sys.path.append('modules/linux_tools')
@@ -29,12 +30,12 @@ def creating_file(cabinet_name):
 def main(cabinet_name, api_url):
     if (cabinet_name == None):
         print("Кабинет не определён")
-        cabinet_name = "Не определённый"
+        cabinet_name = "Неопределённый"
     if (api_url == None):
         print("Укажите ссылку на API")
         return
     dict_info = creating_file(cabinet_name)
-    with open(f'info_emae.json', 'w', encoding='utf-8') as file:
+    with open(f'{cabinet_name}_{uname().node}_{date.today()}.json', 'w', encoding='utf-8') as file:
         json.dump(dict_info, file, indent=4, ensure_ascii=False)
         jsons = json.dumps(dict_info)
         try:
@@ -52,12 +53,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "--cabinet",
         type=str,
-        help="Cabinet name",  # Путь к папке с аудиофайлами
+        help="Cabinet name",  
     )
     parser.add_argument(
         "--api_url",
         type=str,
-        help="API url",  # Путь для сохранения результатов
+        help="API url", 
     )
     args = parser.parse_args()
     main(args.cabinet, args.api_url)
