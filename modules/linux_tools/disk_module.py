@@ -8,14 +8,14 @@ def get_disks_info():
     disks_info = []
     
     for line in result.stdout.splitlines()[1:]:  
-        match = re.match(r'(\S+)\s+(.*)\s+(\S+)', line)
+        match = re.match(r'(\S+)\s+(\S+)\s+(\S+)', line)
         if match:
             model = match.group(1)
             size = match.group(2)
             device_type = match.group(3)
 
             size = size.replace(',', '.')
-            
+
             if device_type != 'disk':
                 continue
 
