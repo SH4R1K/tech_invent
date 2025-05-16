@@ -16,7 +16,7 @@ def get_installed_packages():
                 output.append({
                     "name": package_name,
                     "version": package_version,
-                    "manufacturer": package_info
+                    "vendor": package_info
                 })
     except Exception as e:
         print(f"Ошибка при получении установленных пакетов: {e}")
