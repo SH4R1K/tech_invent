@@ -1,4 +1,5 @@
 import subprocess
+import re
 
 def get_installed_packages():
     output = []
@@ -25,12 +26,9 @@ def get_installed_packages():
 def get_package_info(package_name):
     try:
         result = subprocess.run(['rpm', '-qi', package_name], capture_output=True, text=True)
-        for line in result.stdout.splitlines():
-            stripped = line.strip()
-            if stripped.startswith("Vendor:"):
-                return stripped.split(":", 1)[1].strip()
-            elif stripped.startswith("Packager:"):
-                return stripped.split(":", 1)[1].strip()
+        match = re.search(r'^\s*(Vendor|Packager):\s*(.+)$', result.stdout, re.MULTILINE)
+        if match:
+            return match.group(2).strip()
     except Exception as e:
         print(f"Ошибка при получении информации о пакете {package_name}: {e}")
     
