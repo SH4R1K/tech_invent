@@ -8,7 +8,7 @@ def get_disks_info():
     disks_info = []
     
     for line in result.stdout.splitlines()[1:]:  
-        match = re.match(r'(\S+)\s+(\S+)\s+(\S+)', line)
+        match = re.match(r'(.+?)\s+(\S+)\s+(\S+)', line)
         if match:
             model = match.group(1)
             size = match.group(2)
