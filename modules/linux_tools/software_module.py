@@ -11,7 +11,6 @@ def get_installed_packages():
                 package_name, package_version = line.rsplit('-', 2)[:-2], line.rsplit('-', 2)[-2:]
                 package_name = '-'.join(package_name)
                 package_version = '-'.join(package_version)
-                # Получаем информацию о производителе
                 package_info = get_package_info(package_name)
                 output.append({
                     "name": package_name,
@@ -25,10 +24,11 @@ def get_installed_packages():
 
 def get_package_info(package_name):
     try:
-        # Выполняем команду rpm для получения информации о пакете
         result = subprocess.run(['rpm', '-qi', package_name], capture_output=True, text=True)
         for line in result.stdout.splitlines():
             if line.startswith("Vendor:"):
+                return line.split(":", 1)[1].strip()
+            elif line.startswith("Packager:"):
                 return line.split(":", 1)[1].strip()
     except Exception as e:
         print(f"Ошибка при получении информации о пакете {package_name}: {e}")
