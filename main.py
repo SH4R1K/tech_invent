@@ -28,21 +28,22 @@ def creating_file(cabinet_name):
     return collect_info_dict
 
 def main(cabinet_name, api_url):
-    if (cabinet_name == None):
-        print("Кабинет не определён")
-        cabinet_name = "Неопределённый"
     if (api_url == None):
-        print("Укажите ссылку на API")
-        return
+        api_url = input("Укажите ссылку на API: ")
+        if (cabinet_name == None):
+            print("По умолчанию: Неопределённый")
+            cabinet_name = input("Введите название кабинета: ")
+    if (cabinet_name == None or len(cabinet_name.strip()) == 0):
+        cabinet_name = "Неопределённый"
     dict_info = creating_file(cabinet_name)
     with open(f'{cabinet_name}_{uname().node}_{date.today()}.json', 'w', encoding='utf-8') as file:
         json.dump(dict_info, file, indent=4, ensure_ascii=False)
         jsons = json.dumps(dict_info)
         try:
-            print('Zaglushka')
+            print("Отправляем данные на API")
             send_data(jsons, api_url)
         except:
-            print('api is dead ☠️')
+            print('API не отвечает')
     print("Success!")
 
 

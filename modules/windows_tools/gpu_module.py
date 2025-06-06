@@ -10,19 +10,25 @@ def get_gpus():
     gpus = GPUtil.getGPUs()
     output = list()
     for gpu in gpus:
-        output.append({
-            "name": gpu.name,
-            "adapter_ram": gpu.memoryTotal/1024, # gb
-            "uuid": gpu.uuid,
-        })
+        try:
+            output.append({
+                "name": gpu.name,
+                "adapter_ram": gpu.memoryTotal/1024, # gb
+                "uuid": gpu.uuid,
+            })
+        except:
+            continue;
     if (amd):
         amd_gpus = ADLManager.getInstance().getDevices()
         for gpu in amd_gpus:
-            adapter_name = gpu.adapterName.decode('utf-8')
-            if (all(item['name'] != adapter_name for item in output)):
-                output.append({
-                    "name": adapter_name,
-                })
+            try:
+                adapter_name = gpu.adapterName.decode('utf-8')
+                if (all(item['name'] != adapter_name for item in output)):
+                    output.append({
+                        "name": adapter_name,
+                    })
+            except:
+                continue
     return output
 
 
