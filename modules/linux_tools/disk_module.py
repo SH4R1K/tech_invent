@@ -22,7 +22,14 @@ def get_disks_info():
             if not model:
                 continue
 
-            size_gb = int(size[:-1]) if size[-1] == 'G' else int(size[:-1]) // 1024  # Преобразуем в ГБ
+            # Конвертируем размер в GB и затем в int
+            if size[-1] == 'G':
+                size_gb = int(float(size[:-1]))  # Конвертируем в float, затем в int
+            elif size[-1] == 'T':
+                size_gb = int(float(size[:-1]) * 1024)  # Конвертируем TB в GB и затем в int
+            else:
+                size_gb = int(float(size[:-1]) / 1024)  # Конвертируем MB в GB и затем в int
+
             disks_info.append({
                 'model': model,
                 'size': size_gb,
