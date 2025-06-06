@@ -8,16 +8,16 @@ def get_memory_info():
         result = subprocess.run(['sudo', 'dmidecode', '-t', 'memory'], capture_output=True, text=True, check=True)
         
         current_memory = {}
-        index = 1
+        index = 1  # Начинаем с 1
 
         for line in result.stdout.splitlines():
             line = line.strip()
             if line.startswith("Memory Device"):
                 if current_memory:
-                    current_memory["name"] = f"[{index + 1}] Физическая память"
+                    current_memory["name"] = f"[{index}] Физическая память"
                     output.append(current_memory)
                     current_memory = {}
-                    index += 1
+                    index += 1 
             elif line.startswith("Manufacturer:"):
                 current_memory["manufacturer"] = line.split(":", 1)[1].strip()
             elif line.startswith("Speed:"):
@@ -35,7 +35,7 @@ def get_memory_info():
         
         # Добавляем последний модуль, если он существует
         if current_memory:
-            current_memory["name"] = f"[{index}] Физическая память"
+            current_memory["name"] = f"[{index}] Физическая память"  # Устанавливаем имя для последнего модуля
             output.append(current_memory)
 
     except Exception as e:
