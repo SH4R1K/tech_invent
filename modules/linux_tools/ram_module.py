@@ -13,8 +13,10 @@ def get_memory_info():
             line = line.strip()
             if line.startswith("Memory Device"):
                 if current_memory:
+                    current_memory["name"] = f"[{index + 1}] Физическая память"
                     output.append(current_memory)
                     current_memory = {}
+                    index += 1
             elif line.startswith("Manufacturer:"):
                 current_memory["manufacturer"] = line.split(":", 1)[1].strip()
             elif line.startswith("Speed:"):
