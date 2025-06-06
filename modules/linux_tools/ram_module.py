@@ -14,6 +14,7 @@ def get_memory_info():
             line = line.strip()
             if line.startswith("Memory Device"):
                 if current_memory:
+                    current_memory["name"] = f"[{index + 1}] Физическая память"
                     output.append(current_memory)
                     current_memory = {}
                     index += 1
@@ -34,7 +35,7 @@ def get_memory_info():
         
         # Добавляем последний модуль, если он существует
         if current_memory:
-            current_memory["name"] = f"[{index}] Физическая память" 
+            current_memory["name"] = f"[{index}] Физическая память"
             output.append(current_memory)
 
     except Exception as e:
