@@ -8,7 +8,8 @@ def get_memory_info():
         result = subprocess.run(['sudo', 'dmidecode', '-t', 'memory'], capture_output=True, text=True, check=True)
         
         current_memory = {}
-        
+        index = 1
+
         for line in result.stdout.splitlines():
             line = line.strip()
             if line.startswith("Memory Device"):
