@@ -7,7 +7,7 @@ def get_processors():
             "name": my_cpuinfo["brand_raw"],
             "physical_cores": psutil.cpu_count(logical=False),
             "logical_cores": psutil.cpu_count(logical=True),
-            "max_clock_speed": psutil.cpu_freq().max
+            "max_clock_speed": int(psutil.cpu_freq().max)
         })
     return output
 #print(get_processors())

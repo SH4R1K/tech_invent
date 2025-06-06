@@ -19,4 +19,4 @@ def get_mainboard():
                 "serial_number": mainboard_info["Serial Number"]
         }
     return output
-print(getBaseboardProductName())
+#print(getBaseboardProductName())

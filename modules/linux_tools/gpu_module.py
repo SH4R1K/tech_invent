@@ -9,4 +9,4 @@ def get_gpus():
             "uuid": gpu.uuid,
         })
     return output
-print(get_gpus())
+#print(get_gpus())

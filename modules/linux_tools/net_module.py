@@ -23,4 +23,4 @@ def get_network_adapters():
                 })
     return output
 
-print(get_network_adapters())
+#print(get_network_adapters())
